@@ -134,21 +134,9 @@ public class FirstFragment extends Fragment {
                 .into(pokeSprite);
     }
 
-//    private void determineMaxStat(){
-//        int[] stats = new int []{poke.getHp(), poke.getAtk(), poke.getDef(),
-//                                poke.getSpAtk(), poke.getSpDef(), poke.getSpeed()};
-//        max = stats[0];
-//        for (int stat:stats){
-//            if(stat>max){
-//                max = stat;
-//            }
-//        }
-//        Log.d("FirstFrag", "Max stat is: " + max);
-//    }
+
     private void determineProgress(){
-//        float scale = getContext().getResources().getDisplayMetrics().density;
-//        RelativeLayout.LayoutParams barWidth = (RelativeLayout.LayoutParams) barHp.getLayoutParams();
-//        int barWidth = barHp.get
+
         double hpProg, atkProg, defProg, spAtkProg, spDefProg, spdProg;
         hpProg = ((double)poke.getHp()/MAX) * 100;
         Log.d(TAG, "Value of hpProg: " + hpProg);
@@ -169,12 +157,6 @@ public class FirstFragment extends Fragment {
         barSpDef.setProgress((int)spDefProg);
         barSpeed.setProgress((int)spdProg);
 
-//        hp.setX((float)hpProg);
-//        atk.setX((float)atkProg);
-//        def.setX((float)defProg);
-//        spAtk.setX((float)spAtkProg);
-//        spDef.setX((float)spDefProg);
-//        speed.setX((float) spdProg);
         attachToProgress(barHp,hp,(int) hpProg);
         attachToProgress(barAtk,atk, (int)atkProg);
         attachToProgress(barDef,def, (int)defProg);
@@ -184,29 +166,9 @@ public class FirstFragment extends Fragment {
     }
     public void attachToProgress(ProgressBar progressBar, TextView textView, int margin) {
         String TG = "AtP";
-//        RelativeLayout.LayoutParams pBar = (RelativeLayout.LayoutParams) progressBar.getLayoutParams();
-//        pBar.
-//        int  width = progressBar.getMeasuredWidth();
+
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) textView.getLayoutParams();
         float scale = getContext().getResources().getDisplayMetrics().density;
-//        Log.d(TG, "DENSITY = " + scale + " WIDTH = " + width);
-//        String content = textView.getText().toString();
-//        int width = 0;
-//        float contentWidth = textView.getPaint().measureText(content);
-//        Log.d(TG, "Content Width = "+ contentWidth);
-////        int realWidth = width - progressBar.getPaddingLeft() - progressBar.getPaddingRight();
-////        Log.d(TG, "Padding Left: " + progressBar.getPaddingLeft() + "  Padding right: " + progressBar.getPaddingRight());
-////        Log.d(TG, "RealWidth = " + realWidth);
-//        int maxLimit = 100;
-////        Log.d(TG, "MaxLimit = " + maxLimit);
-//        int minLimit = 20;
-//        float percent = (float) (1.0 * progressBar.getProgress() / progressBar.getMax());
-//        Log.d(TG, "Prg BAr MAx: ============>     "+progressBar.getMax());
-//        Log.d(TG, "Percent = " + percent);
-//        int left = minLimit + (int) (percent - contentWidth / 2.0);
-//        Log.d(TG, "Left = " + left);
-//        left = left <= minLimit ? minLimit : left >= maxLimit ? maxLimit : left;
-//        Log.d(TG, "Second left = " + left);
         progressBar.post(new Runnable() {
             @Override
             public void run() {

@@ -26,6 +26,11 @@ public class MainActivityTest extends AppCompatActivity {
     List<Pokemon> pokemons;
     public static  final String TAG = "MainActivity";
 
+    /* TODO: connect the app to firebase to store favorites and
+             trainer information. Create a list of favorties,
+             list of owned, and list of "deck" pokemon
+     */
+
 
 
     @Override
@@ -56,36 +61,7 @@ public class MainActivityTest extends AppCompatActivity {
                             textView.setText(poke.getDescription());
 
                             Log.d("MainActivity", "Pokemon added: " + poke.toString());
-//                            poke.setInfo(response);
-//                            Log.d(TAG, "POKEMON AFTER SET INFO: " + poke.toString());
-//
-//                            pokemonRetriever.getPokeDesc(
-//                                    response.getJSONObject("species").getString("url").toString(),
-//                                    new PokemonRetriever.VolleyResponseListener() {
-//                                        @Override
-//                                        public void onError(String message) {
-//
-//                                        }
-//
-//                                        @Override
-//                                        public void onResponse(JSONObject response) {
-//                                            try {
-//                                                JSONArray flavor = response.getJSONArray("flavor_text_entries");
-//                                                String desc = flavor.getJSONObject(0).getString("flavor_text").toString();
-//                                                textView.setText(desc);
-//                                                poke.setDescription(response);
-//                                                pokemons.add(poke);
-//                                                Log.d(TAG, "POKEMON: " + poke.toString());
-//                                            } catch (JSONException e) {
-//                                                e.printStackTrace();
-//                                            }
-//                                        }
-//
-//                                        @Override
-//                                        public void onResponse(String response) {
-//
-//                                        }
-//                                    });
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -111,7 +87,7 @@ public class MainActivityTest extends AppCompatActivity {
                     for (Pokemon poke : pokemons) {
                         if (poke.getName().toLowerCase().equals(etDataInput.getText().toString().toLowerCase())) {
                             intent.putExtra("POKEMON", pokemons.get(pokemons.indexOf(poke)));
-                            startActivityForResult(intent, DONE);
+                            startActivity(intent);
                         }
                     }
                 }
@@ -119,10 +95,6 @@ public class MainActivityTest extends AppCompatActivity {
         });
     }
 
-//    public void calculateXPosition(ProgressBar seekBar, TextView progressTextView){
-//        double xPosition=  (((seekBar.ge - seekBar.left) / seekBar.max) * seekBar.progress ) + seekBar.left
-//
-//        progressTextView.tray= xPosition.toFloat() - (progressTextView.width/2)
-//    }
+
 }
 

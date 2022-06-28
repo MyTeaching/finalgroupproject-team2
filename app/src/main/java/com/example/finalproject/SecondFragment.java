@@ -40,14 +40,6 @@ public class SecondFragment extends Fragment {
         Bundle bundle = getArguments();
 
         poke = bundle.getParcelable("POKEMON");
-//        fav = view.findViewById(R.id.iv_fav2)pikachu;
-//        pokeBackSprite = view.findViewById(R.id.iv_poke_sprite_back);
-//        type1 = view.findViewById(R.id.tv_type_1_b);
-//        type2 = view.findViewById(R.id.tv_type_2_b);
-//        weight = view.findViewById(R.id.tv_weight_b);
-//        height = view.findViewById(R.id.tv_height_b);
-//        name = view.findViewById(R.id.tv_poke_name_b);
-//        desc = view.findViewById(R.id.description);
         connectViews();
         setTextValues();
         setImages();

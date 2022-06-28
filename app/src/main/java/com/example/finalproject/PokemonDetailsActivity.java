@@ -30,23 +30,17 @@ public class PokemonDetailsActivity extends AppCompatActivity {
         binding = ActivityPokemonDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        /* TODO: Unhide the action bar and make it transparent. (Change the layout to make the tool
+                 bar appear on top of the other layout. Relative layout instead of coordinate?)  */
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().hide();
         Intent intent = getIntent();
-        Pokemon poke = intent.getParcelableExtra("POKEMON");
-        Log.d("DetailActivity", "Testing data passed: "+ poke.toString());
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_pokemon_details);
         navController.setGraph(R.navigation.nav_graph, intent.getExtras());
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-//        binding.fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
     @Override
