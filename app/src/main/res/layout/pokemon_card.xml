@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDBBBB"
+    android:padding="8dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/view2"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:elevation="12dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="80dp"
+        app:cardElevation="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_weight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+
+            android:id="@+id/iv_poke_sprite"
+            android:layout_width="145dp"
+            android:layout_height="160dp"
+            android:contentDescription="@string/image_of_current_pokemon"
+            android:scaleType="centerCrop"
+            android:src="@drawable/stats_rectangle" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_poke_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/tv_poke_name"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cvstats"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view2" />
+
+    <TextView
+        android:id="@+id/tv_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/tv_height"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/iv_weight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_poke_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_weight" />
+
+    <TextView
+        android:id="@+id/tv_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/tv_weight"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/iv_weight"
+        app:layout_constraintEnd_toStartOf="@+id/tv_poke_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <ImageView
+        android:id="@+id/iv_height"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/height_desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_poke_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_height"
+        app:srcCompat="@drawable/ic_height" />
+
+    <ImageView
+        android:id="@+id/iv_weight"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_poke_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_weight"
+        app:srcCompat="@drawable/ic_weight"
+        android:contentDescription="@string/anchor_image_for_weight" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvstats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/transparent"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_weight"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/background_for_cardview"
+            android:scaleType="fitXY"
+            android:src="@drawable/stats_rectangle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="#00FFFFFF"
+            android:backgroundTint="#00FFFFFF"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_type_1"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/type_1_rectangle"
+                    android:gravity="center"
+                    android:text="@string/tv_type1"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_type_2"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/type_2_rectangle"
+                    android:gravity="center"
+                    android:text="@string/tv_type2"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="HP: "
+                    android:textAlignment="viewStart"
+                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_horizontal">
+
+                    <ProgressBar
+                        android:id="@+id/bar_hp"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:progress="24"
+                        android:progressDrawable="@drawable/stat_bar"
+                        android:progressTint="#FFEB3B" />
+
+                    <TextView
+                        android:id="@+id/tv_hp_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+
+                        android:layout_alignTop="@id/bar_hp"
+
+                        android:layout_alignBottom="@id/bar_hp"
+                        android:layout_marginStart="@dimen/stat_marg"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/ph_amt"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="ATK:"
+                    android:textAlignment="viewStart"
+                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:id="@+id/bar_atk"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:progress="50"
+                        android:progressDrawable="@drawable/stat_bar"
+                        android:progressTint="#F4336A" />
+
+                    <TextView
+                        android:id="@+id/tv_atk_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_alignTop="@id/bar_atk"
+                        android:layout_alignBottom="@id/bar_atk"
+                        android:layout_marginStart="@dimen/stat_marg"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/ph_amt"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="DEF"
+                    android:textAlignment="viewStart"
+                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:id="@+id/bar_def"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:progress="60"
+                        android:progressDrawable="@drawable/stat_bar"
+                        android:progressTint="#4CAF50" />
+
+                    <TextView
+                        android:id="@+id/tv_def_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_alignTop="@id/bar_def"
+                        android:layout_alignBottom="@id/bar_def"
+                        android:layout_marginStart="@dimen/stat_marg"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/ph_amt"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="SATK:"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:id="@+id/bar_sp_atk"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:progress="60"
+                        android:progressDrawable="@drawable/stat_bar"
+                        android:progressTint="#EA5DFA" />
+
+                    <TextView
+                        android:id="@+id/tv_spatk_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_alignTop="@id/bar_sp_atk"
+                        android:layout_alignBottom="@id/bar_sp_atk"
+                        android:layout_marginStart="@dimen/stat_marg"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/ph_amt"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="SDEF:"
+                    android:textAlignment="viewStart"
+                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:id="@+id/bar_sp_def"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:progress="60"
+                        android:progressDrawable="@drawable/stat_bar"
+                        android:progressTint="#7A9AFA" />
+
+                    <TextView
+                        android:id="@+id/tv_spdef_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="@dimen/stat_marg"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/ph_amt"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:background="#00000000"
+                        android:layout_alignTop="@id/bar_sp_def"
+                        android:layout_alignBottom="@id/bar_sp_def"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="SPD:"
+                    android:textAlignment="viewStart"
+                    android:textStyle="bold" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/bar_speed"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:progress="60"
+                    android:progressDrawable="@drawable/stat_bar"
+                    android:progressTint="#E8B55B" />
+
+                <TextView
+                    android:id="@+id/tv_spd_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignTop="@id/bar_speed"
+                    android:layout_alignBottom="@id/bar_speed"
+                    android:layout_marginStart="@dimen/stat_marg"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/ph_amt"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/iv_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+
+    <TextView
+        android:id="@+id/tv_poke_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No. 1"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
