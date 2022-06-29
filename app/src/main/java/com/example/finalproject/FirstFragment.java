@@ -1,5 +1,6 @@
 package com.example.finalproject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,6 +48,7 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Bundle bundle = getArguments();
+        assert bundle != null;
         poke = bundle.getParcelable("POKEMON");
         Log.d("FIRSTFRAGMENT", poke.toString());
         connectViews();
@@ -54,20 +56,12 @@ public class FirstFragment extends Fragment {
         setImages();
 //        determineMaxStat();
         determineProgress();
-        fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setFav();
-            }
-        });
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("POKEMON", poke);
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment, bundle);
-            }
+        fav.setOnClickListener(v -> setFav());
+        binding.buttonFirst.setOnClickListener(view1 -> {
+            Bundle bundle1 = new Bundle();
+            bundle1.putParcelable("POKEMON", poke);
+            NavHostFragment.findNavController(FirstFragment.this)
+                    .navigate(R.id.action_FirstFragment_to_SecondFragment, bundle1);
         });
     }
 
@@ -101,6 +95,7 @@ public class FirstFragment extends Fragment {
         pokeNum = getView().findViewById(R.id.tv_poke_num);
     }
 
+    @SuppressLint("DefaultLocale")
     public void setTextValues(){
         hp.setText(String.valueOf(poke.getHp()));
         Log.d(TAG, "Value of Hp: " + poke.getHp());

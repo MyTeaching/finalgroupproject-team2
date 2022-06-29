@@ -28,7 +28,7 @@ public class PokemonRetriever {
         this.context = context;
     }
 
-    public interface VolleyResponseListener{
+    public interface VolleyResponseListener {
         void onError(String message);
         void onResponse(JSONObject response);
         void onResponse(String response);

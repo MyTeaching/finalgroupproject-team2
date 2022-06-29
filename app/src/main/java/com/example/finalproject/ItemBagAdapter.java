@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,7 +32,7 @@ public class ItemBagAdapter extends RecyclerView.Adapter<ItemBagAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.pokemonId.setImageResource(pokemonList.get(position).getImage());
+        holder.pokemonId.setImageResource();
     }
 
     @Override

@@ -8,8 +8,8 @@ import org.json.JSONObject;
 
 public class Pokemon implements Parcelable {
 
-    String name, description, type1, type2, spriteURL,spriteURLBack;
-    int id,  hp, atk, def, spAtk, spDef, speed, weight, height;
+    String name, description, type1, type2, spriteURL, spriteURLBack;
+    int id, hp, atk, def, spAtk, spDef, speed, weight, height, img;
     boolean favorite;
 
 
@@ -39,16 +39,20 @@ public class Pokemon implements Parcelable {
         this.type1 = type1;
         this.type2 = type2;
         // array at 16(15?)
-            this.hp = hp;
-            this.atk = atk;
-            this.def = def;
-            this.spAtk = spAtk;
-            this.spDef = spDef;
-            this.speed = speed;
+        this.hp = hp;
+        this.atk = atk;
+        this.def = def;
+        this.spAtk = spAtk;
+        this.spDef = spDef;
+        this.speed = speed;
 
         // array at 18(17?)
         this.weight = weight;
         favorite = false;
+    }
+
+    public Pokemon(String spriteURL) {
+        this.spriteURL = spriteURL;
     }
 
     public String getName() {
@@ -155,14 +159,14 @@ public class Pokemon implements Parcelable {
         this.height = height;
     }
 
-    public void setInfo(JSONObject response){
+    public void setInfo(JSONObject response) {
         try {
             this.height = response.getInt("height");
             this.weight = response.getInt("weight");
             this.name = response.getString("name");
             this.id = response.getInt("id");
-            for( int i = 0; i < response.getJSONArray("stats").length();i++){
-                switch (i){
+            for (int i = 0; i < response.getJSONArray("stats").length(); i++) {
+                switch (i) {
                     case 0:
                         this.hp = response.getJSONArray("stats").getJSONObject(0).getInt("base_stat");
                         break;
@@ -186,10 +190,10 @@ public class Pokemon implements Parcelable {
                 }
                 this.spriteURL = response.getJSONObject("sprites").getString("front_default");
                 this.spriteURLBack = response.getJSONObject("sprites").getString("back_default");
-                if(response.getJSONArray("types").length() < 2){
+                if (response.getJSONArray("types").length() < 2) {
                     this.type1 = response.getJSONArray("types").getJSONObject(0).getJSONObject("type").getString("name");
                     this.type2 = "NONE";
-                }else{
+                } else {
                     this.type1 = response.getJSONArray("types").getJSONObject(0).getJSONObject("type").getString("name");
                     this.type2 = response.getJSONArray("types").getJSONObject(1).getJSONObject("type").getString("name");
                 }
@@ -199,6 +203,7 @@ public class Pokemon implements Parcelable {
         }
 
     }
+
     public void setDescription(JSONObject response) {
         try {
             JSONArray flavor = response.getJSONArray("flavor_text_entries");
@@ -212,6 +217,7 @@ public class Pokemon implements Parcelable {
     public String getSpriteURL() {
         return spriteURL;
     }
+
     public String getSpriteURLBack() {
         return spriteURLBack;
     }
@@ -219,6 +225,7 @@ public class Pokemon implements Parcelable {
     public void setSpriteURL(String spriteURL) {
         this.spriteURL = spriteURL;
     }
+
     public void setSpriteURLBack(String spriteURLBack) {
         this.spriteURLBack = spriteURLBack;
     }
@@ -305,3 +312,5 @@ public class Pokemon implements Parcelable {
                 ", height=" + height +
                 ", favorite=" + favorite +
                 '}';
+    }
+}
