@@ -1,5 +1,4 @@
 package com.example.finalproject;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -306,5 +305,3 @@ public class Pokemon implements Parcelable {
                 ", height=" + height +
                 ", favorite=" + favorite +
                 '}';
-    }
-}

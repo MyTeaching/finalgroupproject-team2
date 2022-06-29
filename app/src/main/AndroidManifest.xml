@@ -22,8 +22,8 @@
             android:label="@string/title_activity_pokemon_details"
             android:theme="@style/Theme.FinalProject.NoActionBar" />
         <activity
-            android:name=".MainActivityTest"
-            android:exported="true" >
+            android:name=".ItemBag"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
