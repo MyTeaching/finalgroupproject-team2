@@ -19,7 +19,8 @@
             android:id="@+id/pokemonLogoId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="15dp"
+            android:outlineAmbientShadowColor="@color/white"
+            android:outlineSpotShadowColor="@color/white"
             app:srcCompat="@drawable/ic_international_pok_mon_logo"
             tools:ignore="ContentDescription" />
 
@@ -52,8 +53,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginBottom="5dp"
-                    android:background="#F8F7F7"
                     android:elevation="15dp"
+                    android:background="#F8F7F7"
                     android:shadowColor="@color/gray"
                     android:shadowDx="2"
                     android:shadowDy="2"
@@ -71,12 +72,12 @@
                         android:id="@+id/pokemonSearchId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginBottom="3dp"
-                        android:elevation="15dp"
-                        android:hint="@string/search"
                         android:shadowColor="@color/gray"
                         android:shadowRadius="5"
+                        android:elevation="15dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="3dp"
+                        android:hint="@string/search"
                         android:textAlignment="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -90,8 +91,7 @@
             android:id="@+id/pokemonViewId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:elevation="15dp">
+            android:layout_marginBottom="8dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 

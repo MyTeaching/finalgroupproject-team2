@@ -1,6 +1,8 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DownloadManager;
 import android.graphics.Bitmap;
@@ -31,47 +33,23 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class ItemBag extends AppCompatActivity {
-    Button drawCards, searchButtonId;
-    TextView playerName;
+    Button drawCards;
     EditText searchBar;
-    ImageView playerAvatar, pokeLogo, pokeViews;
-
-    JsonObjectRequest[] jsonImageQueries = new JsonObjectRequest[6];
-
-//    SurfaceView surfaceView;
-//    SurfaceHolder surfaceHolder;
-//    TextView textView;
-
-//    View pokeView;
-//    Bitmap background;
-//    Canvas backgroundCanvas;
+    ImageView playerAvatar, pokeLogo;
+    TextView playerUsername;
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    ArrayList<Pokemon> pokemonList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_bag);
 
-//        surfaceView = findViewById(R.id.surfaceView);
-//        surfaceHolder = surfaceView.getHolder();
-//        textView = findViewById(R.id.textView);
-//        button.findViewById(R.id.button);
-
-//        pokeView = findViewById(R.id.PokeViewStandardId);
-        String pokemonName = "pikachu";
-        String url = String.format("https://pokeapi.co/api/v2/pokemon/%s", pokemonName.toLowerCase(Locale.ROOT));
-        RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,
-                (JSONObject) null, response -> textView.setText(response.toString()),
-                error -> textView.setText(error.toString()));
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                queue.add(jsonObjectRequest);
-            }
-        });
+        layoutManager = new GridLayoutManager(this, 2);
     }
 }
