@@ -36,20 +36,36 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class ItemBag extends AppCompatActivity {
+public class ItemBag extends AppCompatActivity implements RecyclerViewInterface{
     Button drawCards;
     EditText searchBar;
     ImageView playerAvatar, pokeLogo;
     TextView playerUsername;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-    ArrayList<Pokemon> pokemonList;
+    ItemBagAdapter itemBagAdapter;
+    ArrayList<Pokemon> availablePokemon;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_bag);
 
+        recyclerView = findViewById(R.id.pokemonViewId);
+        itemBagAdapter = new ItemBagAdapter(this, availablePokemon, this);
         layoutManager = new GridLayoutManager(this, 2);
+        searchBar = findViewById(R.id.pokemonSearchId);
+        String pokemonSearchedName = searchBar.getText().toString();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+    }
+
+    @Override
+    public void onItemLongClick(int position) {
+
     }
 }
