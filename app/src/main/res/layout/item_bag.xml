@@ -7,13 +7,18 @@
     android:background="@drawable/eevee">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:orientation="vertical"
         android:paddingLeft="8dp"
         android:paddingTop="8dp"
         android:paddingRight="8dp"
-        android:paddingBottom="8dp">
+        android:paddingBottom="8dp"
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/pokemonLogoId"
@@ -24,7 +29,6 @@
             tools:ignore="ContentDescription" />
 
         <LinearLayout
-            android:id="@+id/playerAvatarId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -32,16 +36,15 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="286dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="15dp"
-                tools:ignore="ContentDescription,ImageContrastCheck"
+                android:id="@+id/playerAvatarId"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:elevation="30dp"
+                tools:ignore="ContentDescription,ImageContrastCheck,ImageContrastCheck,ImageContrastCheck"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -49,9 +52,9 @@
                 <TextView
                     android:id="@+id/usernameId"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="2dp"
                     android:background="#F8F7F7"
                     android:elevation="15dp"
                     android:shadowColor="@color/gray"
@@ -60,7 +63,7 @@
                     android:shadowRadius="6"
                     android:text="@string/name"
                     android:textAlignment="center"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -96,5 +99,18 @@
         </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/drawButtonId"
+        android:layout_width="136dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/draw"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

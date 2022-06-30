@@ -19,6 +19,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.bumptech.glide.Glide;
 import com.example.team2finalprojectpokedex.databinding.FragmentFirstBinding;
 
+import java.util.Objects;
+
 public class FirstFragment extends Fragment {
     static  final String TAG = "FirstFrag";
     private FragmentFirstBinding binding;
@@ -31,7 +33,7 @@ public class FirstFragment extends Fragment {
 //    public Context context;
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
 
@@ -67,28 +69,28 @@ public class FirstFragment extends Fragment {
         binding = null;
     }
 
-    public  void connectViews(){
-        fav = getView().findViewById(R.id.iv_fav);
-        pokeSprite = getView().findViewById(R.id.iv_poke_sprite);
-        type1 = getView().findViewById(R.id.tv_type_1);
-        type2 = getView().findViewById(R.id.tv_type_2);
-        weight = getView().findViewById(R.id.tv_weight);
-        height = getView().findViewById(R.id.tv_height);
-        name = getView().findViewById(R.id.tv_poke_name);
-        hp = getView().findViewById(R.id.tv_hp_amount);
-        atk = getView().findViewById(R.id.tv_atk_amount);
-        def = getView().findViewById(R.id.tv_def_amount);
-        spAtk = getView().findViewById(R.id.tv_spatk_amount);
-        spDef = getView().findViewById(R.id.tv_spdef_amount);
-        speed = getView().findViewById(R.id.tv_spd_amount);
-        barHp = getView().findViewById(R.id.bar_hp);
-        barAtk = getView().findViewById(R.id.bar_atk);
-        barDef = getView().findViewById(R.id.bar_def);
-        barSpAtk = getView().findViewById(R.id.bar_sp_atk);
-        barSpDef = getView().findViewById(R.id.bar_sp_def);
-        barSpeed = getView().findViewById(R.id.bar_speed);
-        cardView = getView().findViewById(R.id.view2);
-        pokeNum = getView().findViewById(R.id.tv_poke_num);
+    public void connectViews(){
+        fav = requireView().findViewById(R.id.iv_fav);
+        pokeSprite = requireView().findViewById(R.id.iv_poke_sprite);
+        type1 = requireView().findViewById(R.id.tv_type_1);
+        type2 = requireView().findViewById(R.id.tv_type_2);
+        weight = requireView().findViewById(R.id.tv_weight);
+        height = requireView().findViewById(R.id.tv_height);
+        name = requireView().findViewById(R.id.tv_poke_name);
+        hp = requireView().findViewById(R.id.tv_hp_amount);
+        atk = requireView().findViewById(R.id.tv_atk_amount);
+        def = requireView().findViewById(R.id.tv_def_amount);
+        spAtk = requireView().findViewById(R.id.tv_spatk_amount);
+        spDef = requireView().findViewById(R.id.tv_spdef_amount);
+        speed = requireView().findViewById(R.id.tv_spd_amount);
+        barHp = requireView().findViewById(R.id.bar_hp);
+        barAtk = requireView().findViewById(R.id.bar_atk);
+        barDef = requireView().findViewById(R.id.bar_def);
+        barSpAtk = requireView().findViewById(R.id.bar_sp_atk);
+        barSpDef = requireView().findViewById(R.id.bar_sp_def);
+        barSpeed = requireView().findViewById(R.id.bar_speed);
+        cardView = requireView().findViewById(R.id.view2);
+        pokeNum = requireView().findViewById(R.id.tv_poke_num);
     }
 
     @SuppressLint("DefaultLocale")
@@ -159,22 +161,19 @@ public class FirstFragment extends Fragment {
         String TG = "AtP";
 
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) textView.getLayoutParams();
-        float scale = getContext().getResources().getDisplayMetrics().density;
-        progressBar.post(new Runnable() {
-            @Override
-            public void run() {
-                int width = progressBar.getWidth(); //height is ready
-                int tvWidth = textView.getWidth();
-                Log.d(TG, "marginStart for   = "+layoutParams.getMarginStart() + " width for bar = " + width);
-                layoutParams.setMarginStart(  (int)((margin/100.0)*(int)Math.ceil((width)) - tvWidth));
-                Log.d(TG, "LayoutParam MArgin after: " + layoutParams.getMarginStart());
-                if(layoutParams.getMarginStart() > width*.9){
-                    layoutParams.setMarginStart(width - (int)(width*.2));
+        float scale = requireContext().getResources().getDisplayMetrics().density;
+        progressBar.post(() -> {
+            int width = progressBar.getWidth(); //height is ready
+            int tvWidth = textView.getWidth();
+            Log.d(TG, "marginStart for   = "+layoutParams.getMarginStart() + " width for bar = " + width);
+            layoutParams.setMarginStart(  (int)((margin/100.0)*(int)Math.ceil((width)) - tvWidth));
+            Log.d(TG, "LayoutParam MArgin after: " + layoutParams.getMarginStart());
+            if(layoutParams.getMarginStart() > width*.9){
+                layoutParams.setMarginStart(width - (int)(width*.2));
 //                } else if(layoutParams.getMarginStart() < width *.2){
 //                    layoutParams.setMarginStart(width- (int)(width*.8));
-                }else {
-                    textView.setLayoutParams(layoutParams);
-                }
+            }else {
+                textView.setLayoutParams(layoutParams);
             }
         });
 
