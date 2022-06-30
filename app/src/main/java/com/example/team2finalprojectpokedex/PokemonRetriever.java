@@ -9,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -106,7 +107,7 @@ public class PokemonRetriever {
         RequestSingleton.getInstance(context ).addToRequestQueue(request);
     }
 
-    public void makePokemon(Pokemon poke, JSONObject response, List<Pokemon> pokemons, View v) throws JSONException {
+    public void makePokemon(Pokemon poke, JSONObject response, List<Pokemon> pokemons, View v, Trainer trainer, FirebaseUser user) throws JSONException {
         poke.setInfo(response);
         Log.d(TAG, "POKEMON AFTER SET INFO: " + poke.toString());
         getPokeDesc(
@@ -124,6 +125,7 @@ public class PokemonRetriever {
                             String desc = flavor.getJSONObject(0).getString("flavor_text").toString();
                             poke.setDescription(response);
                             addPokeToList(pokemons, poke, v);
+                            trainer.updateTrainer(user, pokemons);
                             Log.d(TAG, "POKEMON: " + poke.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -181,6 +183,7 @@ public class PokemonRetriever {
                                 JSONArray flavor = response.getJSONArray("flavor_text_entries");
                                 poke.setDescription(response);
                                 addPokeToList(pokemons, poke);
+
                                 Log.d(TAG, "POKEMON: " + poke.toString());
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -200,7 +203,15 @@ public class PokemonRetriever {
         tv.setText(pokemons.get(pokemons.indexOf(poke)).getDescription());
     }
     public void addPokeToList(List<Pokemon> pokemons,Pokemon poke){
-        pokemons.add(poke);
+        boolean contains = false;
+        for(Pokemon pokemon : pokemons){
+            if(pokemon.getId() == poke.getId()){
+                contains = true;
+            }
+        }
+        if(!contains) {
+            pokemons.add(poke);
+        }
     }
 
 }

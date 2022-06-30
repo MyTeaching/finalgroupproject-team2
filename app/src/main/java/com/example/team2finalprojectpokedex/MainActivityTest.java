@@ -66,6 +66,9 @@ public class MainActivityTest extends AppCompatActivity {
         pokemonRetriever = new PokemonRetriever(MainActivityTest.this);
         pokemons = new ArrayList<>();
         connectViews();
+        
+        // Not really simple now is it? Passing in so many variables to update a trainer on a button click, very ugly messy code.
+        // Need to extract methods and create interfaces to implement callbacks instead of whatever it is im doing here
         simpleRequestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,18 +82,8 @@ public class MainActivityTest extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             Pokemon poke = new Pokemon();
-                            pokemonRetriever.makePokemon(poke, response, pokemons, textView);
+                            pokemonRetriever.makePokemon(poke, response, pokemons, textView, pokeTrainer, mAuth.getCurrentUser());
                             textView.setText(poke.getDescription());
-                            List<Integer> updatedList = new ArrayList<>();
-                            for(Pokemon pokemon: pokemons){
-                                if(!pokeTrainer.getPokedex().contains(Integer.valueOf(pokemon.getId()))){
-                                    updatedList.add(Integer.valueOf(pokemon.getId()));
-                                }
-                            }
-                            pokeTrainer.setPokedex(updatedList);
-                            updateTrainer();
-
-
                             Log.d("MainActivity", "Pokemon added: " + poke.toString());
 
                         } catch (JSONException e) {
@@ -338,6 +331,8 @@ public class MainActivityTest extends AppCompatActivity {
             }
         });
     }
+
+    // Sets the user UI if a current user is detected, iterates through the pokemon they aquired if they have any and populates the pokemons array
     public void setUserUI( ){
             trainer.setImageResource(R.drawable.eevee);
             userName.setText(pokeTrainer.getFirstName());
@@ -355,52 +350,38 @@ public class MainActivityTest extends AppCompatActivity {
             etPassword.setVisibility(View.INVISIBLE);
             tvUser.setVisibility(View.INVISIBLE);
             tvPass.setVisibility(View.INVISIBLE);
-            for(Integer i : pokeTrainer.getPokedex()){
-                pokemonRetriever.getByID(i.intValue(), new PokemonRetriever.VolleyResponseListener() {
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(MainActivityTest.this, "Something Wrong", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            Pokemon poke = new Pokemon();
-                            pokemonRetriever.makePokemon(poke, response, pokemons);
-                            Log.d("MainActivity", "Pokemon added: " + poke.toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+            if(pokeTrainer.getPokedex()!= null) {
+                for (Integer i : pokeTrainer.getPokedex()) {
+                    pokemonRetriever.getByID(i.intValue(), new PokemonRetriever.VolleyResponseListener() {
+                        @Override
+                        public void onError(String message) {
+                            Toast.makeText(MainActivityTest.this, "Something Wrong", Toast.LENGTH_SHORT).show();
                         }
-                    }
 
-                    @Override
-                    public void onResponse(String pokeName) {
-                        Toast.makeText(MainActivityTest.this, "Returned Pokemon Named: " + pokeName, Toast.LENGTH_SHORT).show();
-                        textView.setText(pokeName );
-                        Log.d(TAG, "Pokemon name from onClick(): " + pokeName);
-                    }
-                });
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                Pokemon poke = new Pokemon();
+                                pokemonRetriever.makePokemon(poke, response, pokemons);
+                                Log.d("MainActivity", "Pokemon added: " + poke.getName());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onResponse(String pokeName) {
+                            Toast.makeText(MainActivityTest.this, "Returned Pokemon Named: " + pokeName, Toast.LENGTH_SHORT).show();
+                            textView.setText(pokeName);
+                            Log.d(TAG, "Pokemon name from onClick(): " + pokeName);
+                        }
+                    });
+                }
             }
             Log.d(TAG, pokeTrainer.toString());
 
     }
 
-    public void updateTrainer() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        Log.d(TAG, "CURRENT USER: " + currentUser);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("users").document(currentUser.getUid());
-        docRef.update("pokedex", pokeTrainer.getPokedex()).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.d("UPDATE", "PokeDex Updated in fireStore");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("UPDATE", "Failed to update pokedex");
-            }
-        });
-    }
+
 }
 
