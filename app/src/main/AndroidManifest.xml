@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.finalproject" >
+    package="com.example.team2finalprojectpokedex" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -20,15 +20,20 @@
             android:name=".PokemonDetailsActivity"
             android:exported="false"
             android:label="@string/title_activity_pokemon_details"
-            android:theme="@style/Theme.FinalProject.NoActionBar" />
+            android:theme="@style/Theme.FinalProject.NoActionBar" >
+        </activity>
         <activity
-            android:name=".ItemBag"
-            android:exported="true">
+            android:name=".MainActivityTest"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ItemBag"
+            android:exported="false" >
         </activity>
     </application>
 

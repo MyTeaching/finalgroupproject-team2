@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.team2finalprojectpokedex;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
-import com.example.finalproject.databinding.FragmentSecondBinding;
+import com.example.team2finalprojectpokedex.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
 

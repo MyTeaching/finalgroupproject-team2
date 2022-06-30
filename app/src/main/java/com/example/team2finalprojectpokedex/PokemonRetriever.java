@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.team2finalprojectpokedex;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,7 +13,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.List;
 

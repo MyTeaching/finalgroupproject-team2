@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.team2finalprojectpokedex;
 
 import java.util.ArrayList;
 
