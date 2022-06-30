@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseApp;
@@ -40,6 +42,7 @@ public class MainActivityTest extends AppCompatActivity {
     EditText etDataInput, etUser, etPassword;
     ImageView trainer;
     View mParentLayout;
+    PokemonRetriever pokemonRetriever;
     Button simpleRequestBtn, getPokemon, btCreate, btLogin;
 //    String pokeQuery;
     List<Pokemon> pokemons;
@@ -60,7 +63,7 @@ public class MainActivityTest extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_main_test);
         mParentLayout = findViewById(android.R.id.content);
-        PokemonRetriever pokemonRetriever = new PokemonRetriever(MainActivityTest.this);
+        pokemonRetriever = new PokemonRetriever(MainActivityTest.this);
         pokemons = new ArrayList<>();
         connectViews();
         simpleRequestBtn.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +81,15 @@ public class MainActivityTest extends AppCompatActivity {
                             Pokemon poke = new Pokemon();
                             pokemonRetriever.makePokemon(poke, response, pokemons, textView);
                             textView.setText(poke.getDescription());
+                            List<Integer> updatedList = new ArrayList<>();
+                            for(Pokemon pokemon: pokemons){
+                                if(!pokeTrainer.getPokedex().contains(Integer.valueOf(pokemon.getId()))){
+                                    updatedList.add(Integer.valueOf(pokemon.getId()));
+                                }
+                            }
+                            pokeTrainer.setPokedex(updatedList);
+                            updateTrainer();
+
 
                             Log.d("MainActivity", "Pokemon added: " + poke.toString());
 
@@ -343,8 +355,52 @@ public class MainActivityTest extends AppCompatActivity {
             etPassword.setVisibility(View.INVISIBLE);
             tvUser.setVisibility(View.INVISIBLE);
             tvPass.setVisibility(View.INVISIBLE);
+            for(Integer i : pokeTrainer.getPokedex()){
+                pokemonRetriever.getByID(i.intValue(), new PokemonRetriever.VolleyResponseListener() {
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(MainActivityTest.this, "Something Wrong", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            Pokemon poke = new Pokemon();
+                            pokemonRetriever.makePokemon(poke, response, pokemons);
+                            Log.d("MainActivity", "Pokemon added: " + poke.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onResponse(String pokeName) {
+                        Toast.makeText(MainActivityTest.this, "Returned Pokemon Named: " + pokeName, Toast.LENGTH_SHORT).show();
+                        textView.setText(pokeName );
+                        Log.d(TAG, "Pokemon name from onClick(): " + pokeName);
+                    }
+                });
+            }
             Log.d(TAG, pokeTrainer.toString());
 
+    }
+
+    public void updateTrainer() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        Log.d(TAG, "CURRENT USER: " + currentUser);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users").document(currentUser.getUid());
+        docRef.update("pokedex", pokeTrainer.getPokedex()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("UPDATE", "PokeDex Updated in fireStore");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("UPDATE", "Failed to update pokedex");
+            }
+        });
     }
 }
 
