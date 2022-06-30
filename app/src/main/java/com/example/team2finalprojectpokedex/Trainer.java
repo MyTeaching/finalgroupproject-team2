@@ -1,50 +1,48 @@
 package com.example.team2finalprojectpokedex;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.google.firebase.firestore.IgnoreExtraProperties;
 import com.google.firebase.firestore.ServerTimestamp;
-import com.google.type.Date;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
-import java.util.ListIterator;
+
 
 @IgnoreExtraProperties
 public class Trainer {
     private String userID;
-    private String trainerID;
     private String firstName;
     private String lastName;
     private int age;
     private String trainerType;
     private String email;
-    private List<Pokemon> pokedex;
-    private @ServerTimestamp Date timestamp;
+    private List<Integer> pokedex;
+    private @ServerTimestamp
+    Date timestamp;
 
     public Trainer(){
-        this.pokedex = new ArrayList<Pokemon>();
+
     }
 
     public Trainer(String userID , String firstName,
                    String lastName, int age, String trainerType, String email,
-                   List<Pokemon> pokedex, Date timestamp) {
+                   List<Integer> pokedex, Date timestamp) {
         this.userID = userID;
-//        this.trainerID = trainerID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.trainerType = trainerType;
         this.email = email;
-        this.pokedex = new ArrayList<Pokemon>();
+        this.pokedex = pokedex;
         this.timestamp = timestamp;
     }
 
+    public void setPokedex(List<Integer> pokedex) {
+        this.pokedex = pokedex;
+    }
 
-    public List<Pokemon> getPokedex() {
+    public List<Integer> getPokedex() {
         return pokedex;
     }
 
@@ -57,13 +55,6 @@ public class Trainer {
         this.userID = userID;
     }
 
-    public String getTrainerID() {
-        return trainerID;
-    }
-
-    public void setTrainerID(String trainerID) {
-        this.trainerID = trainerID;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -111,5 +102,19 @@ public class Trainer {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Trainer{" +
+                "userID='" + userID + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", trainerType='" + trainerType + '\'' +
+                ", email='" + email + '\'' +
+                ", pokedex=" + pokedex +
+                ", timestamp=" + timestamp +
+                '}';
     }
 }

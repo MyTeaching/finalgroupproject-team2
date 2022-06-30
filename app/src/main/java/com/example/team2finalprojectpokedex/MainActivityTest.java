@@ -22,9 +22,10 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +44,7 @@ public class MainActivityTest extends AppCompatActivity {
 //    String pokeQuery;
     List<Pokemon> pokemons;
     public static  final String TAG = "MainActivity";
+    private Trainer pokeTrainer;
 
     /* TODO: connect the app to firebase to store favorites and
              trainer information. Create a list of favorties,
@@ -110,6 +112,12 @@ public class MainActivityTest extends AppCompatActivity {
                 }
             }
         });
+        btLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logIn(etUser.getText().toString(), etPassword.getText().toString());
+            }
+        });
     }
     @Override
     public void onStart() {
@@ -132,7 +140,7 @@ public class MainActivityTest extends AppCompatActivity {
         etUser = findViewById(R.id.et_user_email);
         tvPass =  findViewById(R.id.tv_user_password);
         tvUser = findViewById(R.id.tv_user_email);
-        trainerType = findViewById(R.id.tv_username);
+        trainerType = findViewById(R.id.tv_trainer_type);
         trainer = findViewById(R.id.iv_trainer);
         userName = findViewById(R.id.tv_username);
 
@@ -151,6 +159,36 @@ public class MainActivityTest extends AppCompatActivity {
 
     public void reload() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        Log.d(TAG, "CURRENT USER: " + currentUser);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users").document(currentUser.getUid());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful() ){
+                    DocumentSnapshot document = task.getResult();
+                    if(document.exists()){
+                        pokeTrainer = new Trainer();
+                        pokeTrainer =  task.getResult().toObject(Trainer.class);
+                        setUserUI();
+                    }
+                    else{
+                        Snackbar.make(mParentLayout, "SOMETHING WENT WRONG DOCUMENT DOESNT EXIST", Snackbar.LENGTH_SHORT).show();
+                    }
+                }  else{
+                        Snackbar.make(mParentLayout, "SOMETHING WENT WRONG TASK FAILED", Snackbar.LENGTH_SHORT).show();
+
+                }
+
+                }
+            });
+    }
+
+
+    public void updateUI(String fName, String trainType){
+        trainerType.setText(trainType);
+        userName.setText(fName);
+        trainer.setImageResource(R.drawable.eevee);
         etDataInput.setVisibility(View.VISIBLE);
         simpleRequestBtn.setVisibility(View.VISIBLE);
         getPokemon.setVisibility(View.VISIBLE);
@@ -158,36 +196,13 @@ public class MainActivityTest extends AppCompatActivity {
         trainer.setVisibility(View.VISIBLE);
         userName.setVisibility(View.VISIBLE);
         textView.setVisibility(View.VISIBLE);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference trainers = db.collection("users");
-        Trainer trainer = trainers.getId(currentUser.getUid());
-        trainerType.setText(currentUser.get);
-
         btCreate.setVisibility(View.INVISIBLE);
         btLogin.setVisibility(View.INVISIBLE);
         etUser.setVisibility(View.INVISIBLE);
         etPassword.setVisibility(View.INVISIBLE);
         tvUser.setVisibility(View.INVISIBLE);
         tvPass.setVisibility(View.INVISIBLE);
-    }
 
-    public void updateUI(FirebaseUser user){
-        if (user != null) {
-            // Name, email address, and profile photo Url
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-//            Uri photoUrl = user.getPhotoUrl();
-
-            // Check if user's email is verified
-//            boolean emailVerified = user.isEmailVerified();
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getIdToken() instead.
-//            String uid = user.getUid();
-            userName.setText(name);
-            trainerType.setText(email);
-        }
     }
 
     public void createUser(String email, String password, Dialog dialog, String fName,
@@ -204,13 +219,12 @@ public class MainActivityTest extends AppCompatActivity {
                                 setDocument(user,email, fName,
                                         lName,age,trainType);
                                 dialog.dismiss();
-                                updateUI(user);
+                                updateUI(fName, trainType);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(MainActivityTest.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
-                                updateUI(null);
                             }
                         }
                     });
@@ -225,14 +239,13 @@ public class MainActivityTest extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-
-                            updateUI(user);
+                            reload();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(MainActivityTest.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+
                         }
                     }
                 });
@@ -299,7 +312,7 @@ public class MainActivityTest extends AppCompatActivity {
         trainer.setLastName(lName);
         trainer.setTrainerType(trainerType);
         DocumentReference newUser = db.collection("users")
-                .document();
+                .document(userUid);
         newUser.set(trainer).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -312,6 +325,26 @@ public class MainActivityTest extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void setUserUI( ){
+            trainer.setImageResource(R.drawable.eevee);
+            userName.setText(pokeTrainer.getFirstName());
+            trainerType.setText(pokeTrainer.getTrainerType());
+            etDataInput.setVisibility(View.VISIBLE);
+            simpleRequestBtn.setVisibility(View.VISIBLE);
+            getPokemon.setVisibility(View.VISIBLE);
+            trainerType.setVisibility(View.VISIBLE);
+            trainer.setVisibility(View.VISIBLE);
+            userName.setVisibility(View.VISIBLE);
+            textView.setVisibility(View.VISIBLE);
+            btCreate.setVisibility(View.INVISIBLE);
+            btLogin.setVisibility(View.INVISIBLE);
+            etUser.setVisibility(View.INVISIBLE);
+            etPassword.setVisibility(View.INVISIBLE);
+            tvUser.setVisibility(View.INVISIBLE);
+            tvPass.setVisibility(View.INVISIBLE);
+            Log.d(TAG, pokeTrainer.toString());
+
     }
 }
 

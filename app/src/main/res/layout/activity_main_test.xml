@@ -108,7 +108,8 @@
         android:layout_marginBottom="24dp"
         android:text="LOG IN"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bt_create" />
+        app:layout_constraintStart_toEndOf="@+id/bt_create"
+        android:onClick="logIn"/>
 
     <ImageView
         android:id="@+id/iv_trainer"
