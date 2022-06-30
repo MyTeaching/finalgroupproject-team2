@@ -51,6 +51,7 @@ public class ItemBag extends AppCompatActivity implements RecyclerViewInterface{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_bag);
+        getSupportActionBar().setTitle("");
 
         recyclerView = findViewById(R.id.pokemonViewId);
         itemBagAdapter = new ItemBagAdapter(this, availablePokemon, this);

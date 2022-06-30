@@ -1,109 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/starter_pokemon"
-    android:padding="24dp"
-    >
+    android:background="@drawable/starter_pokemon">
 
-    <RelativeLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:background="@android:color/transparent">
 
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:ignore="UselessParent">
+            android:layout_height="?attr/actionBarSize"/>
 
-            <ImageView
-                android:id="@+id/pokemonLogoId"
-                android:layout_width="304dp"
-                android:layout_height="116dp"
-                android:layout_marginTop="-50dp"
-                android:layout_marginBottom="10dp"
-                android:elevation="50dp"
-                app:srcCompat="@drawable/ic_international_pok_mon_logo"
-                tools:ignore="ContentDescription" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <ImageView
-                android:id="@+id/playerAvatarId"
-                android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appbar"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/pokemonLogoId"
+            android:layout_width="304dp"
+            android:layout_height="116dp"
+            android:layout_marginTop="-50dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="50dp"
+            app:srcCompat="@drawable/ic_international_pok_mon_logo"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/playerAvatarId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="30dp"
+            tools:ignore="ContentDescription"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:elevation="30dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="30dp"
-                tools:ignore="ContentDescription"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:inputType="text"
+                android:hint="@string/name"
+                android:textAlignment="center"
+                android:textStyle="bold|italic" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:elevation="30dp">
+        <Button
+            android:id="@+id/btn_trainer_bag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="9dp"
+            android:background="@drawable/round_style"
+            android:backgroundTint="#FF5757"
+            android:elevation="30dp"
+            android:padding="40dp"
+            android:shadowColor="#5F56BF"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="1.6"
+            android:text="@string/trainer_bag"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="#28FF0D"
+            android:onClick="goToTrainerBag"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/name"
-                    android:textAlignment="center"
-                    android:textStyle="bold|italic" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/btn_draw_cards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="9dp"
+            android:background="@drawable/round_style"
+            android:backgroundTint="#FF5757"
+            android:elevation="30dp"
+            android:padding="40dp"
+            android:shadowColor="#5F56BF"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="1.6"
+            android:text="@string/draw_cards"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="#28FF0D"
+            android:onClick="goToDrawCards"/>
 
-            <Button
-                android:id="@+id/btn_trainer_bag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="9dp"
-                android:background="@drawable/round_style"
-                android:backgroundTint="#FF5757"
-                android:elevation="30dp"
-                android:padding="40dp"
-                android:shadowColor="#5F56BF"
-                android:shadowDx="4"
-                android:shadowDy="4"
-                android:shadowRadius="1.6"
-                android:text="@string/trainer_bag"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="#28FF0D" />
-
-            <Button
-                android:id="@+id/btn_draw_cards"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="9dp"
-                android:background="@drawable/round_style"
-                android:backgroundTint="#FF5757"
-                android:elevation="30dp"
-                android:padding="40dp"
-                android:shadowColor="#5F56BF"
-                android:shadowDx="4"
-                android:shadowDy="4"
-                android:shadowRadius="1.6"
-                android:text="@string/draw_cards"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="#28FF0D" />
-
-            <Button
-                android:id="@+id/btn_pokedex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="9dp"
-                android:background="@drawable/round_style"
-                android:backgroundTint="#FF5757"
-                android:elevation="30dp"
-                android:padding="40dp"
-                android:shadowColor="#5F56BF"
-                android:shadowDx="4"
-                android:shadowDy="4"
-                android:shadowRadius="1.6"
-                android:text="@string/pokedex"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="#28FF0D" />
+        <Button
+            android:id="@+id/btn_pokedex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="9dp"
+            android:background="@drawable/round_style"
+            android:backgroundTint="#FF5757"
+            android:elevation="30dp"
+            android:padding="40dp"
+            android:shadowColor="#5F56BF"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="1.6"
+            android:text="@string/pokedex"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="#28FF0D"
+            android:onClick="goToPokeDex"/>
 
         </LinearLayout>
-    </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

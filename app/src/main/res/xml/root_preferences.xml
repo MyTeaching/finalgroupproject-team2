@@ -1,0 +1,15 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/messages_header">
+        <ListPreference
+            app:defaultValue="count"
+            app:entries="pokemon_count_entries"
+            app:entryValues="pokemon_count_values"
+            app:key="pokemonCount"
+            app:title="# of Pokemon to load"
+            app:useSimpleSummaryProvider="true"/>
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

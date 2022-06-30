@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class DrawCards extends AppCompatActivity {
     ArrayList<Pokemon> pokemonArrayList;
 
-    public DrawCards(ArrayList<Pokemon> arrayList) {
-        this.pokemonArrayList = arrayList;
-    }
+//    public DrawCards(ArrayList<Pokemon> arrayList) {
+//        this.pokemonArrayList = arrayList;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

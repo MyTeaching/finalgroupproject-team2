@@ -3,21 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/drawable/activity_main.xml" value="0.3345" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/drawable/ic_height.xml" value="0.3015" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/drawable/ic_international_pok_mon_logo.xml" value="0.3015" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3015" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/drawable/ic_weight.xml" value="0.3015" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/drawable/round_style.xml" value="0.3345" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/drawable/roundstyle.xml" value="0.196" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/drawable/stat_bar.xml" value="0.3015" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/activity_main.xml" value="0.3" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/activity_main_test.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/draw_cards.xml" value="0.3229166666666667" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/item_bag.xml" value="0.3229166666666667" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/pokemon_card.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/pokemon_view.xml" value="0.3229166666666667" />
-        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.196" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/drawable/roundstyle.xml" value="0.2575" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/layout/activity_main_test.xml" value="0.2" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/layout/activity_pokemon_details.xml" value="0.2864583333333333" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/layout/content_pokemon_details.xml" value="0.2864583333333333" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/layout/draw_cards.xml" value="0.2864583333333333" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/layout/fragment_first.xml" value="0.2" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/layout/fragment_second.xml" value="0.2" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/layout/item_bag.xml" value="0.2234375" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/layout/pokemon_card.xml" value="0.2864583333333333" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/layout/pokemon_card2.xml" value="0.2864583333333333" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/layout/pokemon_view.xml" value="0.2" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/menu/menu_main.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/sotoj/AndroidStudioProjects/GPFinal/app/src/main/res/xml/root_preferences.xml" value="0.2234375" />
       </map>
     </option>
   </component>
