@@ -23,6 +23,26 @@
             android:theme="@style/Theme.FinalProject.NoActionBar" />
         <activity
             android:name=".ItemBag"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".DrawCards"
+            android:exported="false"
+            tools:ignore="Instantiatable">
+        </activity>
+
+        <activity
+            android:name=".CardView"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".CardView"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

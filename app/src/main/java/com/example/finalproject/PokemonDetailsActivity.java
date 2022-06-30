@@ -18,6 +18,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.finalproject.databinding.ActivityPokemonDetailsBinding;
 
+import java.util.Objects;
+
 public class PokemonDetailsActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -33,7 +35,7 @@ public class PokemonDetailsActivity extends AppCompatActivity {
         /* TODO: Unhide the action bar and make it transparent. (Change the layout to make the tool
                  bar appear on top of the other layout. Relative layout instead of coordinate?)  */
         setSupportActionBar(binding.toolbar);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         Intent intent = getIntent();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_pokemon_details);

@@ -34,4 +34,6 @@
     <string name="pokedex">Pokedex</string>
     <string name="draw_cards">Draw Cards</string>
     <string name="trainer_bag">Trainer Bag</string>
+    <string name="returnString">Return</string>
+    <string name="draw">Draw Cards</string>
 </resources>

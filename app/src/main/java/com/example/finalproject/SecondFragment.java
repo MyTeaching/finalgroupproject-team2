@@ -1,5 +1,6 @@
 package com.example.finalproject;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,7 +26,7 @@ public class SecondFragment extends Fragment {
     CardView cardView;
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
 
@@ -39,6 +40,7 @@ public class SecondFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Bundle bundle = getArguments();
 
+        assert bundle != null;
         poke = bundle.getParcelable("POKEMON");
         connectViews();
         setTextValues();
@@ -46,21 +48,13 @@ public class SecondFragment extends Fragment {
         Log.d("SecondFrag","Second frag bundle: " +poke.toString());
 
 
-        fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setFav();
-            }
-        });
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("POKEMON" , poke);
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment,bundle);
+        fav.setOnClickListener(v -> setFav());
+        binding.buttonSecond.setOnClickListener(view1 -> {
+            Bundle bundle1 = new Bundle();
+            bundle1.putParcelable("POKEMON" , poke);
+            NavHostFragment.findNavController(SecondFragment.this)
+                    .navigate(R.id.action_SecondFragment_to_FirstFragment, bundle1);
 
-            }
         });
     }
 
@@ -71,17 +65,18 @@ public class SecondFragment extends Fragment {
     }
 
     public void connectViews(){
-        fav = getView().findViewById(R.id.iv_fav2);
-        pokeBackSprite = getView().findViewById(R.id.iv_poke_sprite_back);
-        type1 = getView().findViewById(R.id.tv_type_1_b);
-        type2 = getView().findViewById(R.id.tv_type_2_b);
-        weight = getView().findViewById(R.id.tv_weight_b);
-        height = getView().findViewById(R.id.tv_height_b);
-        name = getView().findViewById(R.id.tv_poke_name_b);
-        desc = getView().findViewById(R.id.description);
-        cardView = getView().findViewById(R.id.view2_b);
-        pokeNum = getView().findViewById(R.id.tv_poke_num_b);
+        fav = requireView().findViewById(R.id.iv_fav2);
+        pokeBackSprite = requireView().findViewById(R.id.iv_poke_sprite_back);
+        type1 = requireView().findViewById(R.id.tv_type_1_b);
+        type2 = requireView().findViewById(R.id.tv_type_2_b);
+        weight = requireView().findViewById(R.id.tv_weight_b);
+        height = requireView().findViewById(R.id.tv_height_b);
+        name = requireView().findViewById(R.id.tv_poke_name_b);
+        desc = requireView().findViewById(R.id.description);
+        cardView = requireView().findViewById(R.id.view2_b);
+        pokeNum = requireView().findViewById(R.id.tv_poke_num_b);
     }
+    @SuppressLint("DefaultLocale")
     public void setTextValues(){
 //        connectViews();
         weight.setText(String.format("%.2f kg",poke.getWeight() * .1));

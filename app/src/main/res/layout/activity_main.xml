@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:id="@+id/pokemonLogoId"
                 android:layout_width="304dp"
                 android:layout_height="116dp"
-                android:layout_marginTop="-50dp"
+                android:layout_marginTop="-5dp"
                 android:layout_marginBottom="10dp"
                 android:elevation="50dp"
                 app:srcCompat="@drawable/ic_international_pok_mon_logo"
@@ -32,11 +32,17 @@
 
             <ImageView
                 android:id="@+id/playerAvatarId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
                 android:elevation="30dp"
-                tools:ignore="ContentDescription"
+                tools:ignore="ContentDescription,ImageContrastCheck,ImageContrastCheck,ImageContrastCheck"
                 tools:srcCompat="@tools:sample/avatars" />
+
+            <Button
+                android:id="@+id/onClickId"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:visibility="invisible"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="200dp"
@@ -45,65 +51,70 @@
                 android:elevation="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/playerUsernameId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/name"
                     android:textAlignment="center"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold|italic"
+                    tools:ignore="TextContrastCheck,TextContrastCheck,TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btn_trainer_bag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="67dp"
                 android:layout_margin="9dp"
                 android:background="@drawable/round_style"
                 android:backgroundTint="#FF5757"
                 android:elevation="30dp"
-                android:padding="40dp"
                 android:shadowColor="#5F56BF"
                 android:shadowDx="4"
                 android:shadowDy="4"
                 android:shadowRadius="1.6"
                 android:text="@string/trainer_bag"
+                android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="#28FF0D" />
+                android:textColor="#28FF0D"
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/btn_draw_cards"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="201dp"
+                android:layout_height="72dp"
                 android:layout_margin="9dp"
                 android:background="@drawable/round_style"
                 android:backgroundTint="#FF5757"
                 android:elevation="30dp"
-                android:padding="40dp"
                 android:shadowColor="#5F56BF"
                 android:shadowDx="4"
                 android:shadowDy="4"
                 android:shadowRadius="1.6"
                 android:text="@string/draw_cards"
+                android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="#28FF0D" />
+                android:textColor="#28FF0D"
+                tools:ignore="TextContrastCheck" />
 
             <Button
                 android:id="@+id/btn_pokedex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="204dp"
+                android:layout_height="75dp"
                 android:layout_margin="9dp"
                 android:background="@drawable/round_style"
                 android:backgroundTint="#FF5757"
                 android:elevation="30dp"
-                android:padding="40dp"
                 android:shadowColor="#5F56BF"
                 android:shadowDx="4"
                 android:shadowDy="4"
                 android:shadowRadius="1.6"
                 android:text="@string/pokedex"
+                android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="#28FF0D" />
+                android:textColor="#28FF0D"
+                tools:ignore="TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck" />
 
         </LinearLayout>
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

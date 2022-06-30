@@ -11,11 +11,20 @@
         <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/drawable/round_style.xml" value="0.3345" />
         <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/drawable/roundstyle.xml" value="0.196" />
         <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/drawable/stat_bar.xml" value="0.3015" />
+        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout-v28/draw_cards.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout-v28/item_bag.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/activity_main.xml" value="0.3" />
         <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/activity_main_test.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/activity_pokemon_details.xml" value="0.14074074074074075" />
+        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/card_viewer.xml" value="0.365625" />
+        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/card_window.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/content_pokemon_details.xml" value="0.3111413043478261" />
         <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/draw_cards.xml" value="0.3229166666666667" />
+        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/fragment_first.xml" value="0.3111413043478261" />
+        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/fragment_second.xml" value="0.3111413043478261" />
         <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/item_bag.xml" value="0.3229166666666667" />
         <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/pokemon_card.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/pokemon_card2.xml" value="0.3111413043478261" />
         <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/layout/pokemon_view.xml" value="0.3229166666666667" />
         <entry key="..\:/Users/daiya/AndroidStudioProjects/finalgroupproject-team2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.196" />
       </map>

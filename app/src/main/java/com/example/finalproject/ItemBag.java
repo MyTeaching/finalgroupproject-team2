@@ -1,51 +1,30 @@
 package com.example.finalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.DownloadManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Surface;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.ParseError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class ItemBag extends AppCompatActivity implements RecyclerViewInterface{
     Button drawCards;
     EditText searchBar;
-    ImageView playerAvatar, pokeLogo;
+    ImageView playerAvatar;
     TextView playerUsername;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     ItemBagAdapter itemBagAdapter;
     ArrayList<Pokemon> availablePokemon;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +32,24 @@ public class ItemBag extends AppCompatActivity implements RecyclerViewInterface{
         setContentView(R.layout.item_bag);
 
         recyclerView = findViewById(R.id.pokemonViewId);
+        playerAvatar = findViewById(R.id.playerAvatarId);
+        playerUsername = findViewById(R.id.usernameId);
+        searchBar = findViewById(R.id.pokemonSearchId);
+        drawCards = findViewById(R.id.drawButtonId);
+
+        Intent mainActivity = getIntent();
+
+        playerAvatar.setImageResource(R.mipmap.ic_launcher_default);
+        playerUsername.setText(mainActivity.getStringExtra("USERNAME"));
+
         itemBagAdapter = new ItemBagAdapter(this, availablePokemon, this);
         layoutManager = new GridLayoutManager(this, 2);
-        searchBar = findViewById(R.id.pokemonSearchId);
         String pokemonSearchedName = searchBar.getText().toString();
+
+        drawCards.setOnClickListener(v -> {
+            Intent openCardViewer = new Intent(ItemBag.this, DrawCards.class);
+            startActivity(openCardViewer);
+        });
     }
 
     @Override

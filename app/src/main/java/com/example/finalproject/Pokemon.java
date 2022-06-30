@@ -2,6 +2,8 @@ package com.example.finalproject;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,12 +11,11 @@ import org.json.JSONObject;
 public class Pokemon implements Parcelable {
 
     String name, description, type1, type2, spriteURL, spriteURLBack;
-    int id, hp, atk, def, spAtk, spDef, speed, weight, height, img;
+    int id, hp, atk, def, spAtk, spDef, speed, weight, height;
     boolean favorite;
 
 
-    public Pokemon() {
-    }
+    public Pokemon() {}
 
     public Pokemon(String name, String description, String type1, String type2,
                    String spriteURL, int id, int hp, int atk, int def, int spAtk,
@@ -53,6 +54,11 @@ public class Pokemon implements Parcelable {
 
     public Pokemon(String spriteURL) {
         this.spriteURL = spriteURL;
+    }
+
+    public Pokemon(int id) {
+        this.id = id;
+        spriteURL = String.format("https://pokeapi.co/api/v2/pokemon-species/%s/", id);
     }
 
     public String getName() {
@@ -201,14 +207,12 @@ public class Pokemon implements Parcelable {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     public void setDescription(JSONObject response) {
         try {
             JSONArray flavor = response.getJSONArray("flavor_text_entries");
-            String desc = flavor.getJSONObject(0).getString("flavor_text").toString();
-            this.description = desc;
+            this.description = flavor.getJSONObject(0).getString("flavor_text");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -292,6 +296,7 @@ public class Pokemon implements Parcelable {
         this.favorite = favorite;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Pokemon{" +
