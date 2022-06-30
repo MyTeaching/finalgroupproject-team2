@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ItemBag extends AppCompatActivity implements RecyclerViewInterface{
     Button drawCards;
@@ -30,6 +31,7 @@ public class ItemBag extends AppCompatActivity implements RecyclerViewInterface{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_bag);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         recyclerView = findViewById(R.id.pokemonViewId);
         playerAvatar = findViewById(R.id.playerAvatarId);
