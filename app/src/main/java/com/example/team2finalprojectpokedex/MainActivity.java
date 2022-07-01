@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Context context;
     Button btnTrainerBag, btnDrawCards, btnPokedex, onClickId;
 
-
+// TODO: find out where the pokedex is null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle trainerInfo = intent.getExtras();
         trainer = trainerInfo.getParcelable("TRAINER");
+        Log.d("MainActivity", "Trainer in Main: " + trainer.getPokedex().toString());
         // Connecting items
         widgetConnect();
         avatar = findViewById(R.id.playerAvatarId);

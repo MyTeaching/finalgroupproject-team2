@@ -28,7 +28,7 @@ public class Trainer implements Parcelable {
     private int age;
     private String trainerType;
     private String email;
-    private List<Integer> pokedex;
+    private ArrayList<Integer> pokedex;
     private @ServerTimestamp
     Date timestamp;
 
@@ -38,7 +38,7 @@ public class Trainer implements Parcelable {
 
     public Trainer(String userID , String firstName,
                    String lastName, int age, String trainerType, String email,
-                   List<Integer> pokedex, Date timestamp) {
+                   ArrayList<Integer> pokedex, Date timestamp) {
         this.userID = userID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -56,6 +56,7 @@ public class Trainer implements Parcelable {
         age = in.readInt();
         trainerType = in.readString();
         email = in.readString();
+        pokedex = in.readArrayList(Integer.TYPE.getClassLoader());
     }
 
     @Override
@@ -66,6 +67,7 @@ public class Trainer implements Parcelable {
         dest.writeInt(age);
         dest.writeString(trainerType);
         dest.writeString(email);
+        dest.writeList(pokedex);
     }
 
     @Override
@@ -85,11 +87,16 @@ public class Trainer implements Parcelable {
         }
     };
 
-    public void setPokedex(List<Integer> pokedex) {
+    public void setPokedex(ArrayList<Integer> pokedex) {
         this.pokedex = pokedex;
     }
 
-    public List<Integer> getPokedex() {
+    public void addToPokedex(ArrayList<Integer> newList){
+        for(Integer i : newList){
+            this.getPokedex().add(i);
+        }
+    }
+    public ArrayList<Integer> getPokedex() {
         return pokedex;
     }
 

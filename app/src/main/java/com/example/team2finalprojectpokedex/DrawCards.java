@@ -32,6 +32,7 @@ public class DrawCards extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.draw_cards);
+        context = this;
         pokemonRetriever = new PokemonRetriever(this);
         Random random = new Random();
         Intent intent = getIntent();
@@ -39,6 +40,7 @@ public class DrawCards extends AppCompatActivity {
         trainer = bundle.getParcelable("TRAINER");
         mAuth = FirebaseAuth.getInstance();
         pokemonArrayList = new ArrayList<>();
+        setTrainerInfo(trainer, context);
         // Creating buttons
         returnButton = findViewById(R.id.returnButtonId);
         drawCardButton = findViewById(R.id.drawCardId);
@@ -74,7 +76,9 @@ public class DrawCards extends AppCompatActivity {
     }
     public void setTrainerInfo(Trainer pokeTrainer, Context context){
         if(pokeTrainer.getPokedex()!= null) {
+            Log.d("DrawCard", "Current pokedex: "+pokeTrainer.getPokedex().toString());
             for (Integer i : pokeTrainer.getPokedex()) {
+                Log.d("DrawCard", "Inside for loop Intger "+ i.toString());
                 pokemonRetriever.getByID(i.intValue(), new PokemonRetriever.VolleyResponseListener() {
                     @Override
                     public void onError(String message) {
@@ -85,7 +89,7 @@ public class DrawCards extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             Pokemon poke = new Pokemon();
-                            pokemonRetriever.makePokemon(poke, response, pokemonArrayList);
+                            pokemonRetriever.makePokemon("DrawCard", poke, response, pokemonArrayList);
                             Log.d("MainActivity", "Pokemon added: " + poke.getName());
                         } catch (JSONException e) {
                             e.printStackTrace();

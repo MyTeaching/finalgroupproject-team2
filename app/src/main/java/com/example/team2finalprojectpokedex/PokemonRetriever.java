@@ -165,6 +165,33 @@ public class PokemonRetriever {
                     });
         }
 
+    public void makePokemon( String TAG, Pokemon poke,JSONObject response, ArrayList<Pokemon> pokemons) throws JSONException {
+        poke.setInfo(response);
+        Log.d(TAG, "POKEMON AFTER SET INFO: " + poke.toString());
+        getPokeDesc(
+                response.getJSONObject("species").getString("url").toString(),
+                new PokemonRetriever.VolleyResponseListener() {
+                    @Override
+                    public void onError(String message) {
+                        Log.d(TAG, "Error retrieving flavor text");
+                    }
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray flavor = response.getJSONArray("flavor_text_entries");
+                            poke.setDescription(response);
+                            addPokeToList(pokemons, poke);
+
+                            Log.d(TAG, "POKEMON: " + poke.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                });
+    }
+
     public void addPokeToList(List<Pokemon> pokemons,Pokemon poke, View v){
         pokemons.add(poke);
         TextView tv = (TextView)v;

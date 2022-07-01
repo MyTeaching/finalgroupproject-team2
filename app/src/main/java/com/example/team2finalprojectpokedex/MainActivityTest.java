@@ -167,6 +167,7 @@ public class MainActivityTest extends AppCompatActivity {
                     if(document.exists()){
                         pokeTrainer = new Trainer();
                         pokeTrainer =  task.getResult().toObject(Trainer.class);
+                        Log.d("MainActivityTest", pokeTrainer.toString());
 //                        setUserUI();
                         Intent intent = new Intent(MainActivityTest.this, MainActivity.class);
                         Bundle bundle = new Bundle();
