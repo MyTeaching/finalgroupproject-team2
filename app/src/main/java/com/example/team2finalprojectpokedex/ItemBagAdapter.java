@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.team2finalprojectpokedex;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -33,9 +33,11 @@ public class ItemBagAdapter extends RecyclerView.Adapter<ItemBagAdapter.ViewHold
     }
 
     @Override
+
     public void onBindViewHolder(@NonNull ItemBagAdapter.ViewHolder holder, int position) {
         ImageView imageView = holder.pokemonId;
         Glide.with(context).load(pokemonList.get(position).getSpriteURL()).into(imageView);
+
     }
 
     @Override

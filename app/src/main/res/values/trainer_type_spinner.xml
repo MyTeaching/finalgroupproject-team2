@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources> <string-array name="trainertype">
+    <item>Mountaineer</item>
+    <item>Diver</item>
+    <item>Swimmer</item>
+    <item>Spelunker</item>
+    <item>Preschooler</item>
+    <item>Gym Leader</item>
+    <item>Scientist</item>
+</string-array></resources>

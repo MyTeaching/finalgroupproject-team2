@@ -1,21 +1,16 @@
-package com.example.finalproject;
-
-import android.content.Intent;
+package com.example.team2finalprojectpokedex;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
-import android.view.View;
+import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Objects;
+
 
 public class ItemBag extends AppCompatActivity implements RecyclerViewInterface{
     Button drawCards;

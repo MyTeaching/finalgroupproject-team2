@@ -1,22 +1,16 @@
-package com.example.finalproject;
+package com.example.team2finalprojectpokedex;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
-import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.finalproject.databinding.ActivityPokemonDetailsBinding;
+import com.example.team2finalprojectpokedex.databinding.ActivityPokemonDetailsBinding;
 
 import java.util.Objects;
 

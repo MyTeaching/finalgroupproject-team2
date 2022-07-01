@@ -1,4 +1,4 @@
-package com.example.finalproject.ui.theme;
+package com.example.team2finalprojectpokedex.ui.theme;
 
 import android.graphics.Color;
 import android.os.Build;

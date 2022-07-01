@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.team2finalprojectpokedex;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
-import com.example.finalproject.databinding.FragmentFirstBinding;
+import com.example.team2finalprojectpokedex.databinding.FragmentFirstBinding;
 
 import java.util.Objects;
 

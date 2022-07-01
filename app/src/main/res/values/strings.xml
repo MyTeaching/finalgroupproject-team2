@@ -31,9 +31,16 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_main2">MainActivity2</string>
+
+    <string name="title_activity_testing">TESTING</string>
+
+
+
+
     <string name="pokedex">Pokedex</string>
     <string name="draw_cards">Draw Cards</string>
     <string name="trainer_bag">Trainer Bag</string>
     <string name="returnString">Return</string>
     <string name="draw">Draw Cards</string>
+
 </resources>

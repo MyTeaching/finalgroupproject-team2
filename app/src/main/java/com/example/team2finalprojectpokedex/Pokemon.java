@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.team2finalprojectpokedex;
 import android.os.Parcel;
 import android.os.Parcelable;
 

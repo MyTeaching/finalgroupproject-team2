@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.team2finalprojectpokedex;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
