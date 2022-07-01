@@ -91,14 +91,6 @@ public class MainActivityTest extends AppCompatActivity {
                         }
                     }
 
-                    @Override
-                    public void onResponse(String pokeName) {
-                        Toast.makeText(MainActivityTest.this, "Returned Pokemon Named: " + pokeName, Toast.LENGTH_SHORT).show();
-                        textView.setText(pokeName );
-                        Log.d(TAG, "Pokemon name from onClick(): " + pokeName);
-
-
-                    }
                 });
 
             }
@@ -369,12 +361,6 @@ public class MainActivityTest extends AppCompatActivity {
                             }
                         }
 
-                        @Override
-                        public void onResponse(String pokeName) {
-                            Toast.makeText(MainActivityTest.this, "Returned Pokemon Named: " + pokeName, Toast.LENGTH_SHORT).show();
-                            textView.setText(pokeName);
-                            Log.d(TAG, "Pokemon name from onClick(): " + pokeName);
-                        }
                     });
                 }
             }

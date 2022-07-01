@@ -34,7 +34,6 @@ public class PokemonRetriever {
     public interface VolleyResponseListener {
         void onError(String message);
         void onResponse(JSONObject response);
-        void onResponse(String response);
     }
 
     public void getPokeName(String pokeId, VolleyResponseListener volleyResponseListener){
@@ -50,7 +49,6 @@ public class PokemonRetriever {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    volleyResponseListener.onResponse(pokeName);
                     volleyResponseListener.onResponse(response);
                 }, error -> {
                     String pokeName = "Not found";
@@ -111,10 +109,6 @@ public class PokemonRetriever {
                         }
                     }
 
-                    @Override
-                    public void onResponse(String response) {
-
-                    }
                 });
     }
         public void getByID(int pokeId, VolleyResponseListener volleyResponseListener){
@@ -132,7 +126,6 @@ public class PokemonRetriever {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    volleyResponseListener.onResponse(pokeName);
                     volleyResponseListener.onResponse(response);
                 }
             }, new Response.ErrorListener() {
@@ -169,10 +162,6 @@ public class PokemonRetriever {
                             }
                         }
 
-                        @Override
-                        public void onResponse(String response) {
-
-                        }
                     });
         }
 
@@ -194,36 +183,36 @@ public class PokemonRetriever {
     }
 
 //    //  Make pokemon from draw cards
-//    public void makePokemon(Pokemon poke, JSONObject response, ArrayList<Pokemon> pokeList, Context context) throws JSONException {
-//        poke.setInfo(response);
-//        Log.d(TAG, "POKEMON AFTER SET INFO: " + poke);
-//        getPokeDesc(
-//                response.getJSONObject("species").getString("url"),
-//                new PokemonRetriever.VolleyResponseListener() {
-//                    @Override
-//                    public void onError(String message) {
-//                        Log.d(TAG, "Error retrieving flavor text");
-//                    }
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        try {
-//                            JSONArray flavor = response.getJSONArray("flavor_text_entries");
-//                            String desc = flavor.getJSONObject(0).getString("flavor_text");
-//                            poke.setDescription(response);
-//                            addPokeToList(pokeList, poke);
-//                            Intent cardIntent = new Intent(context, CardView.class);
-//                            Bundle bundle = new Bundle();
-//                            bundle.putParcelableArrayList("POKEMONLIST",pokeList);
-//                            bundle.putString("CURRPOKEMON", poke.getName());
-//                            cardIntent.putExtras(bundle);
-//                            context.startActivity(cardIntent);
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//
-//                });
-//
-//
-//    }
+    public void makePokemon(Pokemon poke, JSONObject response, ArrayList<Pokemon> pokeList, Context context) throws JSONException {
+        poke.setInfo(response);
+        Log.d(TAG, "POKEMON AFTER SET INFO: " + poke);
+        getPokeDesc(
+                response.getJSONObject("species").getString("url"),
+                new PokemonRetriever.VolleyResponseListener() {
+                    @Override
+                    public void onError(String message) {
+                        Log.d(TAG, "Error retrieving flavor text");
+                    }
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray flavor = response.getJSONArray("flavor_text_entries");
+                            String desc = flavor.getJSONObject(0).getString("flavor_text");
+                            poke.setDescription(response);
+                            addPokeToList(pokeList, poke);
+                            Intent cardIntent = new Intent(context, CardView.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelableArrayList("POKEMONLIST",pokeList);
+                            bundle.putString("CURRPOKEMON", poke.getName());
+                            cardIntent.putExtras(bundle);
+                            context.startActivity(cardIntent);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                });
+
+
+    }
 }
