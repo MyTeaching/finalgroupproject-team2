@@ -45,7 +45,7 @@ public class MainActivityTest extends AppCompatActivity {
     PokemonRetriever pokemonRetriever;
     Button simpleRequestBtn, getPokemon, btCreate, btLogin;
 //    String pokeQuery;
-    List<Pokemon> pokemons;
+    ArrayList<Pokemon> pokemons;
     public static  final String TAG = "MainActivity";
     private Trainer pokeTrainer;
 
@@ -167,7 +167,12 @@ public class MainActivityTest extends AppCompatActivity {
                     if(document.exists()){
                         pokeTrainer = new Trainer();
                         pokeTrainer =  task.getResult().toObject(Trainer.class);
-                        setUserUI();
+//                        setUserUI();
+                        Intent intent = new Intent(MainActivityTest.this, MainActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable("TRAINER", pokeTrainer);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
                     }
                     else{
                         Snackbar.make(mParentLayout, "SOMETHING WENT WRONG DOCUMENT DOESNT EXIST", Snackbar.LENGTH_SHORT).show();

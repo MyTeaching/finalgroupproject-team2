@@ -6,9 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,15 +24,20 @@ public class DrawCards extends AppCompatActivity {
     Button returnButton;
     ImageButton drawCardButton;
     PokemonRetriever pokemonRetriever;
+    Trainer trainer;
     int MAX_POKEDEX_ID = 899;
     Context context;
-
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.draw_cards);
         pokemonRetriever = new PokemonRetriever(this);
         Random random = new Random();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        trainer = bundle.getParcelable("TRAINER");
+        mAuth = FirebaseAuth.getInstance();
         pokemonArrayList = new ArrayList<>();
         // Creating buttons
         returnButton = findViewById(R.id.returnButtonId);
@@ -50,9 +58,10 @@ public class DrawCards extends AppCompatActivity {
 
                 @Override
                 public void onResponse(JSONObject response)  {
+
                     Pokemon poke = new Pokemon();
                     try {
-                        pokemonRetriever.makePokemon(poke, response, pokemonArrayList, DrawCards.this);
+                        pokemonRetriever.makePokemon(poke, response, pokemonArrayList, DrawCards.this, trainer, mAuth.getCurrentUser());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -63,6 +72,30 @@ public class DrawCards extends AppCompatActivity {
 
         });
     }
+    public void setTrainerInfo(Trainer pokeTrainer, Context context){
+        if(pokeTrainer.getPokedex()!= null) {
+            for (Integer i : pokeTrainer.getPokedex()) {
+                pokemonRetriever.getByID(i.intValue(), new PokemonRetriever.VolleyResponseListener() {
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(context, "Something Wrong", Toast.LENGTH_SHORT).show();
+                    }
 
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            Pokemon poke = new Pokemon();
+                            pokemonRetriever.makePokemon(poke, response, pokemonArrayList);
+                            Log.d("MainActivity", "Pokemon added: " + poke.getName());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                });
+            }
+        }
+        Log.d("DrawCards", pokeTrainer.toString());
+    }
 
 }

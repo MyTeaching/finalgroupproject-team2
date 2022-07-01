@@ -84,7 +84,7 @@ public class PokemonRetriever {
         RequestSingleton.getInstance(context ).addToRequestQueue(request);
     }
 
-    public void makePokemon(Pokemon poke, JSONObject response, List<Pokemon> pokemons, View v, Trainer trainer, FirebaseUser user) throws JSONException {
+    public void makePokemon(Pokemon poke, JSONObject response, ArrayList<Pokemon> pokemons, View v, Trainer trainer, FirebaseUser user) throws JSONException {
         poke.setInfo(response);
         Log.d(TAG, "POKEMON AFTER SET INFO: " + poke);
         getPokeDesc(
@@ -138,7 +138,7 @@ public class PokemonRetriever {
             RequestSingleton.getInstance(context ).addToRequestQueue(request);
         }
 
-        public void makePokemon( Pokemon poke,JSONObject response, List<Pokemon> pokemons) throws JSONException {
+        public void makePokemon( Pokemon poke,JSONObject response, ArrayList<Pokemon> pokemons) throws JSONException {
             poke.setInfo(response);
             Log.d(TAG, "POKEMON AFTER SET INFO: " + poke.toString());
             getPokeDesc(
@@ -183,7 +183,7 @@ public class PokemonRetriever {
     }
 
 //    //  Make pokemon from draw cards
-    public void makePokemon(Pokemon poke, JSONObject response, ArrayList<Pokemon> pokeList, Context context) throws JSONException {
+    public void makePokemon(Pokemon poke, JSONObject response, ArrayList<Pokemon> pokeList, Context context, Trainer trainer, FirebaseUser user) throws JSONException {
         poke.setInfo(response);
         Log.d(TAG, "POKEMON AFTER SET INFO: " + poke);
         getPokeDesc(
@@ -205,6 +205,7 @@ public class PokemonRetriever {
                             bundle.putParcelableArrayList("POKEMONLIST",pokeList);
                             bundle.putString("CURRPOKEMON", poke.getName());
                             cardIntent.putExtras(bundle);
+                            trainer.updateTrainer(user, pokeList);
                             context.startActivity(cardIntent);
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -1,6 +1,8 @@
 package com.example.team2finalprojectpokedex;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -19,7 +21,7 @@ import java.util.List;
 
 
 @IgnoreExtraProperties
-public class Trainer {
+public class Trainer implements Parcelable {
     private String userID;
     private String firstName;
     private String lastName;
@@ -46,6 +48,42 @@ public class Trainer {
         this.pokedex = pokedex;
         this.timestamp = timestamp;
     }
+
+    protected Trainer(Parcel in) {
+        userID = in.readString();
+        firstName = in.readString();
+        lastName = in.readString();
+        age = in.readInt();
+        trainerType = in.readString();
+        email = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(userID);
+        dest.writeString(firstName);
+        dest.writeString(lastName);
+        dest.writeInt(age);
+        dest.writeString(trainerType);
+        dest.writeString(email);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Trainer> CREATOR = new Creator<Trainer>() {
+        @Override
+        public Trainer createFromParcel(Parcel in) {
+            return new Trainer(in);
+        }
+
+        @Override
+        public Trainer[] newArray(int size) {
+            return new Trainer[size];
+        }
+    };
 
     public void setPokedex(List<Integer> pokedex) {
         this.pokedex = pokedex;
@@ -127,9 +165,9 @@ public class Trainer {
                 '}';
     }
     // Should hopefully update trainer each time a new pokemon is made, keeping track of whether they are in their integer array
-    public void updateTrainer(FirebaseUser currentUser, List<Pokemon> pokemons) {
+    public void updateTrainer(FirebaseUser currentUser, ArrayList<Pokemon> pokemons) {
         //TODO: FIX LOGIC OF MAKING NEW LIST
-        List<Integer> updatedList = new ArrayList<>();
+        ArrayList<Integer> updatedList = new ArrayList<>();
         Log.d("UPDATE", pokemons.toString());
         for(Pokemon pokemon: pokemons){
                 updatedList.add(Integer.valueOf(pokemon.getId()));
